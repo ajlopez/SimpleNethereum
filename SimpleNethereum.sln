@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNethereum", "src\SimpleNethereum\SimpleNethereum.csproj", "{725B1019-72E2-4747-85FD-9FF1CC884730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNethereum.Tests", "src\SimpleNethereum.Tests\SimpleNethereum.Tests.csproj", "{295D5E66-D470-4139-AC38-EACA95362E7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{725B1019-72E2-4747-85FD-9FF1CC884730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725B1019-72E2-4747-85FD-9FF1CC884730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725B1019-72E2-4747-85FD-9FF1CC884730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725B1019-72E2-4747-85FD-9FF1CC884730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295D5E66-D470-4139-AC38-EACA95362E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295D5E66-D470-4139-AC38-EACA95362E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295D5E66-D470-4139-AC38-EACA95362E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295D5E66-D470-4139-AC38-EACA95362E7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3AA5409F-29A1-46D1-A565-EBAC27390A63}
+	EndGlobalSection
+EndGlobal
