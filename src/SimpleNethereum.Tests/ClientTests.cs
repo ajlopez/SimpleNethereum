@@ -25,5 +25,18 @@ namespace SimpleNethereum.Tests
             Assert.IsNotNull(accounts);
             Assert.AreEqual(10, accounts.Length);
         }
+
+        [TestMethod]
+        public async Task GetBalance()
+        {
+            var client = new Client();
+
+            var accounts = await client.GetAccounts();
+
+            var balance = await client.GetBalance(accounts[0]);
+
+            Assert.IsNotNull(balance);
+            Assert.IsFalse(balance.Equals(0));
+        }
     }
 }

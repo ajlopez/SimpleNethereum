@@ -1,4 +1,5 @@
-﻿using Nethereum.Web3;
+﻿using Nethereum.Hex.HexTypes;
+using Nethereum.Web3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace SimpleNethereum
         public async Task<String[]> GetAccounts()
         {
             return await web3.Eth.Accounts.SendRequestAsync();
+        }
+
+        public async Task<HexBigInteger> GetBalance(string account)
+        {
+            return await web3.Eth.GetBalance.SendRequestAsync(account);
         }
     }
 }
