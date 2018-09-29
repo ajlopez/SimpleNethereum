@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Numerics;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Nethereum.Hex.HexTypes;
 
 namespace SimpleNethereum.Tests
 {
@@ -36,7 +38,7 @@ namespace SimpleNethereum.Tests
             var balance = await client.GetBalance(accounts[0]);
 
             Assert.IsNotNull(balance);
-            Assert.IsFalse(balance.Equals(0));
+            Assert.IsFalse(balance.Value.Equals(BigInteger.Zero));
         }
     }
 }
