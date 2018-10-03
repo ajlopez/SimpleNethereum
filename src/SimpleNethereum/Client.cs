@@ -51,6 +51,32 @@ namespace SimpleNethereum
             return await web3.Eth.Transactions.SendTransaction.SendRequestAsync(ti);
         }
 
+        public async Task<string> Call(string data, string fromAccount, string toAccount, HexBigInteger value, HexBigInteger gas, HexBigInteger gasPrice)
+        {
+            TransactionInput ti = new TransactionInput(
+                data,
+                toAccount,
+                fromAccount,
+                gas, gasPrice, value);
+
+            return await web3.Eth.Transactions.Call.SendRequestAsync(ti);
+        }
+
+        public async Task<string> Invoke(string data, string fromAccount, string toAccount, HexBigInteger value, HexBigInteger gas, HexBigInteger gasPrice)
+        {
+            TransactionInput ti = new TransactionInput(
+                data,
+                toAccount,
+                fromAccount,
+                gas, gasPrice, value);
+
+            var hash = await web3.Eth.Transactions.SendTransaction.SendRequestAsync(ti);
+
+            var receipt = await this.WaitTransactionReceipt(hash, 20);
+
+            return receipt == null ? null : hash;
+        }
+
         public async Task<TransactionReceipt> GetTransactionReceipt(string transactionHash)
         {
             return await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
