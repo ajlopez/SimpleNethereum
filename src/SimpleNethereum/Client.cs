@@ -14,8 +14,13 @@ namespace SimpleNethereum
         private Web3 web3;
 
         public Client()
+            : this("http://localhost:8545")
         {
-            this.web3 = new Web3("http://localhost:8545");
+        }
+
+        public Client(string host)
+        {
+            this.web3 = new Web3(host);
         }
 
         public Web3 Web3

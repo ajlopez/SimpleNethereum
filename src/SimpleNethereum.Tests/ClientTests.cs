@@ -25,7 +25,7 @@ namespace SimpleNethereum.Tests
             var accounts = await client.GetAccounts();
 
             Assert.IsNotNull(accounts);
-            Assert.AreEqual(10, accounts.Length);
+            Assert.IsTrue(accounts.Length >= 10);
         }
 
         [TestMethod]
