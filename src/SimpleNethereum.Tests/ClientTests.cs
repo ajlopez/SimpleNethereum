@@ -59,5 +59,19 @@ namespace SimpleNethereum.Tests
             Assert.AreEqual(BigInteger.Subtract(balance0, new BigInteger(1000)), newbalance0);
             Assert.AreEqual(BigInteger.Add(balance1, new BigInteger(1000)), newbalance1);
         }
+
+        [TestMethod]
+        public async Task TransferAndGetTransactionReceipt()
+        {
+            var client = new Client();
+
+            var accounts = await client.GetAccounts();
+            var hash = await client.Transfer(accounts[0], accounts[1], new HexBigInteger(new BigInteger(1000)), new HexBigInteger(new BigInteger(21000)), new HexBigInteger("0x00"));
+
+            var receipt = await client.GetTransactionReceipt(hash);
+
+            Assert.IsNotNull(receipt);
+            Assert.AreEqual(hash, receipt.TransactionHash);
+        }
     }
 }

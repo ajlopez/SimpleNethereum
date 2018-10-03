@@ -38,8 +38,17 @@ namespace SimpleNethereum
 
         public async Task<string> Transfer(string fromAccount, string toAccount, HexBigInteger value, HexBigInteger gas, HexBigInteger gasPrice)
         {
-            TransactionInput ti = new TransactionInput(null, toAccount, fromAccount, gas, gasPrice, value); 
+            TransactionInput ti = new TransactionInput(null, 
+                toAccount, 
+                fromAccount, 
+                gas, gasPrice, value);
+            
             return await web3.Eth.Transactions.SendTransaction.SendRequestAsync(ti);
+        }
+
+        public async Task<TransactionReceipt> GetTransactionReceipt(string transactionHash)
+        {
+            return await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash, 1000);
         }
     }
 }
