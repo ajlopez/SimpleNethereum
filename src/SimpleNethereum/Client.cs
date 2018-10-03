@@ -55,5 +55,20 @@ namespace SimpleNethereum
         {
             return await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash, 1000);
         }
+
+        public async Task<TransactionReceipt> WaitTransactionReceipt(string transactionHash, int nseconds)
+        {
+            int count = 0;
+            var receipt = await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash, 1000);
+
+            while (receipt == null && count < nseconds)
+            {
+                count++;
+                await Task.Delay(1000);
+                receipt = await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash, 1000);
+            }
+
+            return receipt;
+        }
     }
 }

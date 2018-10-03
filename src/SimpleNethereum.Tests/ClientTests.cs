@@ -73,5 +73,19 @@ namespace SimpleNethereum.Tests
             Assert.IsNotNull(receipt);
             Assert.AreEqual(hash, receipt.TransactionHash);
         }
+
+        [TestMethod]
+        public async Task TransferAndWaitTransactionReceipt()
+        {
+            var client = new Client();
+
+            var accounts = await client.GetAccounts();
+            var hash = await client.Transfer(accounts[0], accounts[1], new HexBigInteger(new BigInteger(1000)), new HexBigInteger(new BigInteger(21000)), new HexBigInteger("0x00"));
+
+            var receipt = await client.WaitTransactionReceipt(hash, 20);
+
+            Assert.IsNotNull(receipt);
+            Assert.AreEqual(hash, receipt.TransactionHash);
+        }
     }
 }
