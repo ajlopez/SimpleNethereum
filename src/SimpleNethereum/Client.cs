@@ -53,7 +53,7 @@ namespace SimpleNethereum
 
         public async Task<TransactionReceipt> GetTransactionReceipt(string transactionHash)
         {
-            return await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash, 1000);
+            return await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
         }
 
         public async Task<TransactionReceipt> WaitTransactionReceipt(string transactionHash, int nseconds)
@@ -69,6 +69,20 @@ namespace SimpleNethereum
             }
 
             return receipt;
+        }
+
+        public async Task<string> DeployContract(string code, string fromAccount, HexBigInteger value, HexBigInteger gas, HexBigInteger gasPrice)
+        {
+            TransactionInput ti = new TransactionInput(
+                code,
+                null,
+                fromAccount,
+                gas, gasPrice, value);
+
+            var hash = await web3.Eth.Transactions.SendTransaction.SendRequestAsync(ti);
+            var receipt = await this.WaitTransactionReceipt(hash, 20);
+
+            return receipt == null ? null : receipt.ContractAddress;
         }
     }
 }
