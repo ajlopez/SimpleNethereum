@@ -61,6 +61,25 @@ namespace SimpleNethereum.Tests
         }
 
         [TestMethod]
+        public async Task TransferUsingLongArguments()
+        {
+            var client = new Client();
+
+            var accounts = await client.GetAccounts();
+
+            var balance0 = (await client.GetBalance(accounts[0])).Value;
+            var balance1 = (await client.GetBalance(accounts[1])).Value;
+
+            var hash = await client.Transfer(accounts[0], accounts[1], 1000, 21000, 0);
+
+            var newbalance0 = (await client.GetBalance(accounts[0])).Value;
+            var newbalance1 = (await client.GetBalance(accounts[1])).Value;
+
+            Assert.AreEqual(BigInteger.Subtract(balance0, new BigInteger(1000)), newbalance0);
+            Assert.AreEqual(BigInteger.Add(balance1, new BigInteger(1000)), newbalance1);
+        }
+
+        [TestMethod]
         public async Task TransferAndGetTransactionReceipt()
         {
             var client = new Client();

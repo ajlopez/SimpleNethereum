@@ -4,6 +4,7 @@ using Nethereum.Web3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,6 +50,17 @@ namespace SimpleNethereum
                 gas, gasPrice, value);
             
             return await web3.Eth.Transactions.SendTransaction.SendRequestAsync(ti);
+        }
+
+        public async Task<string> Transfer(string fromAccount, string toAccount, long value, long gas, long gasPrice)
+        {
+            return await this.Transfer(
+                fromAccount,
+                toAccount,
+                new HexBigInteger(new BigInteger(value)),
+                new HexBigInteger(new BigInteger(gas)),
+                new HexBigInteger(new BigInteger(gasPrice))
+                );
         }
 
         public async Task<string> Call(string data, string fromAccount, string toAccount, HexBigInteger value, HexBigInteger gas, HexBigInteger gasPrice)
