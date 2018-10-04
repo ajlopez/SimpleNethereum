@@ -26,7 +26,14 @@ namespace SimpleNethereum.Console
             while (true)
             {
                 System.Console.Write("> ");
-                await ExecuteCommand(System.Console.ReadLine());
+                try
+                {
+                    await ExecuteCommand(System.Console.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
             }
         }
 
